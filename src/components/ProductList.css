@@ -1,0 +1,47 @@
+/* src/components/ProductList.css */
+.product-list-section {
+    flex-grow: 1;
+    /* Biarkan mengisi sisa ruang di main-content */
+    padding: 0 10px;
+    /* Sedikit padding horizontal */
+}
+
+.product-list-section h2 {
+    font-size: 32px;
+    color: var(--text-color-dark);
+    /* Menggunakan variabel CSS */
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    /* Ini yang membuat layout grid */
+    /* Ini adalah bagian paling penting untuk membuat item menyamping */
+    /* Akan membuat kolom otomatis dengan lebar minimal 250px dan mengisi ruang */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    /* Jarak antar kartu produk */
+    justify-content: center;
+    /* Pusatkan grid jika ada sisa ruang */
+}
+
+@media (max-width: 768px) {
+    .product-list-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Sesuaikan untuk tablet */
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        /* Satu kolom untuk layar sangat kecil (smartphone) */
+    }
+}

@@ -1,0 +1,105 @@
+/* src/components/Navbar.css (Pastikan sama dengan yang saya berikan sebelumnya) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    /* Pastikan putih */
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo h1 {
+    margin: 0;
+    color: #007bff;
+    /* Warna biru untuk logo */
+    font-size: 28px;
+}
+
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar-links li a {
+    text-decoration: none;
+    color: #333;
+    /* Warna teks link default */
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+    color: #0056b3;
+}
+
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.cart-button {
+    background-color: #28a745;
+    /* Warna hijau untuk keranjang */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .navbar-links li a {
+        display: block;
+        padding: 5px 0;
+    }
+
+    .navbar-icons {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .search-input {
+        flex-grow: 1;
+    }
+}

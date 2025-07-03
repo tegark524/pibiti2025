@@ -1,0 +1,51 @@
+/* src/index.css */
+/* CSS Reset dasar */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Perbaiki urutan font di sini */
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-light);
+  color: var(--text-color-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', sans-serif;
+  /* ... CSS lainnya ... */
+}
+
+/* Gaya dasar untuk link */
+a {
+  text-decoration: none;
+  color: inherit;
+  /* Inherit warna dari parent */
+}
+
+/* Gaya dasar untuk tombol */
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* Hilangkan garis fokus default */
+button:focus,
+a:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  /* Contoh focus ring */
+}

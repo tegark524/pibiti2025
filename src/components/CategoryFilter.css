@@ -1,0 +1,64 @@
+/* src/components/CategoryFilter.css */
+.category-filter {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    /* Sesuaikan tinggi dengan kontennya */
+    position: sticky;
+    /* Agar tetap terlihat saat di-scroll */
+    top: 20px;
+    /* Jarak dari atas */
+}
+
+.category-filter h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.category-filter ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-filter li {
+    margin-bottom: 10px;
+}
+
+.category-filter a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 16px;
+    display: block;
+    /* Agar seluruh area list item bisa diklik */
+    padding: 5px 0;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.category-filter a:hover {
+    color: #007bff;
+    padding-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .category-filter {
+        min-width: unset;
+        /* Hapus min-width agar fleksibel */
+        width: 100%;
+        /* Ambil lebar penuh */
+        margin-bottom: 20px;
+        /* Beri jarak ke produk list */
+        position: static;
+        /* Hapus sticky pada mobile */
+        top: auto;
+    }
+}
