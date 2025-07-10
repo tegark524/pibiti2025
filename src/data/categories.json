@@ -1,0 +1,22 @@
+[
+    {
+        "id": "cat1",
+        "name": "Makanan",
+        "slug": "makanan"
+    },
+    {
+        "id": "cat2",
+        "name": "Minuman",
+        "slug": "minuman"
+    },
+    {
+        "id": "cat3",
+        "name": "Kerajinan",
+        "slug": "kerajinan"
+    },
+    {
+        "id": "cat4",
+        "name": "Fashion",
+        "slug": "fashion"
+    }
+]

@@ -1,16 +1,34 @@
+// src/components/ProductCard.jsx
 import React from 'react';
-import './ProductCard.css';
+import { Link } from 'react-router-dom';
+import RatingStars from './RatingStars'; // Path ini sudah benar
 
-function ProductCard({ name, category, price, imageUrl }) { // Menerima props
+const ProductCard = ({ product }) => {
+    const averageRating = product.reviews && product.reviews.length > 0
+        ? product.reviews.reduce((sum, review) => sum + review.rating, 0) / product.reviews.length
+        : 0;
+    const displayRating = averageRating.toFixed(1);
+
     return (
         <div className="product-card">
-            <img src={imageUrl} alt={name} className="product-image" />
-            <h3 className="product-name">{name}</h3>
-            <p className="product-category">Kategori: {category}</p>
-            <p className="product-price">{price}</p>
-            <button className="add-to-cart-button">Tambah ke Keranjang</button>
+            <img src={product.image} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p style={{ color: `var(--muted-text-color)` }}>Rp{product.price.toLocaleString('id-ID')}</p>
+
+            <div className="rating-info">
+                <RatingStars initialRating={averageRating} editable={false} />
+                {product.reviews && product.reviews.length > 0 && (
+                    <span>
+                        ({displayRating} dari {product.reviews.length} ulasan)
+                    </span>
+                )}
+            </div>
+
+            <Link to={`/product/${product.id}`} className="btn btn-primary" style={{ marginTop: 'auto' }}>
+                Lihat Detail
+            </Link>
         </div>
     );
-}
+};
 
 export default ProductCard;

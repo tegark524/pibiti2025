@@ -1,0 +1,42 @@
+[
+    {
+        "id": "prod1",
+        "name": "Kopi Khas Ngawi Robusta",
+        "description": "Kopi Robusta asli dari petani Ngawi, aroma kuat dan rasa pahit yang khas.",
+        "price": 25000,
+        "image": "https://via.placeholder.com/300x200?text=Kopi+Robusta",
+        "category": "minuman",
+        "stock": 50,
+        "reviews": []
+    },
+    {
+        "id": "prod2",
+        "name": "Kerupuk Udang Istimewa",
+        "description": "Kerupuk udang renyah dan gurih, cocok sebagai camilan atau pelengkap makanan.",
+        "price": 15000,
+        "image": "https://via.placeholder.com/300x200?text=Kerupuk+Udang",
+        "category": "makanan",
+        "stock": 100,
+        "reviews": []
+    },
+    {
+        "id": "prod3",
+        "name": "Batik Ngawi Motif Bambu",
+        "description": "Kain batik tulis dengan motif bambu khas Ngawi, elegan dan tradisional.",
+        "price": 150000,
+        "image": "https://via.placeholder.com/300x200?text=Batik+Bambu",
+        "category": "fashion",
+        "stock": 10,
+        "reviews": []
+    },
+    {
+        "id": "prod4",
+        "name": "Madu Murni Randu Ngawi",
+        "description": "Madu murni dari nektar bunga randu, kaya manfaat kesehatan.",
+        "price": 75000,
+        "image": "https://via.placeholder.com/300x200?text=Madu+Randu",
+        "category": "minuman",
+        "stock": 30,
+        "reviews": []
+    }
+]

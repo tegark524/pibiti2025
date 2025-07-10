@@ -1,51 +1,712 @@
 /* src/index.css */
-/* CSS Reset dasar */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* --- Reset dan Basic Styling --- */
 body {
-  /* Perbaiki urutan font di sini */
-  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.6;
-  background-color: var(--background-light);
-  color: var(--text-color-dark);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Poppins', sans-serif;
-  /* ... CSS lainnya ... */
+code {
+  font-family: 'Courier New', monospace;
 }
 
-/* Gaya dasar untuk link */
-a {
-  text-decoration: none;
-  color: inherit;
-  /* Inherit warna dari parent */
+/* --- Variabel Tema (untuk Dark Mode) --- */
+:root {
+  --background-color-light: #f8f8f8;
+  --text-color-light: #1a202c;
+  --card-bg-light: #ffffff;
+  --border-color-light: #e2e8f0;
+  --primary-color: #007bff;
+  /* Biru */
+  --secondary-color: #28a745;
+  /* Hijau */
+  --warning-color: #ffc107;
+  /* Kuning */
+  --danger-color: #dc3545;
+  /* Merah */
+  --muted-text-color: #6c757d;
+  /* Abu-abu */
 }
 
-/* Gaya dasar untuk tombol */
-button {
-  cursor: pointer;
+[data-theme='dark'] {
+  --background-color: #1a202c;
+  --text-color: #e2e8f0;
+  --card-bg: #2d3748;
+  --border-color: #4a5568;
+  --primary-color: #60a5fa;
+  /* Biru muda */
+  --secondary-color: #34d399;
+  /* Hijau muda */
+  --warning-color: #fbbf24;
+  /* Kuning terang */
+  --danger-color: #f87171;
+  /* Merah muda */
+  --muted-text-color: #a0aec0;
+  /* Abu-abu terang */
+}
+
+[data-theme='light'] {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+  --card-bg: var(--card-bg-light);
+  --border-color: var(--border-color-light);
+}
+
+
+/* --- Global Button Styles --- */
+.btn {
+  padding: 10px 20px;
   border: none;
-  font-family: inherit;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  /* Untuk Link yang berfungsi sebagai button */
+  display: inline-block;
+  text-align: center;
 }
 
-/* Hilangkan garis fokus default */
-button:focus,
-a:focus,
-input:focus {
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  /* Darker blue */
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #218838;
+  /* Darker green */
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  color: #333;
+  /* Darker text for light background */
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  /* Darker yellow */
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  /* Darker red */
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  padding: 0;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.btn-link:hover {
+  color: #0056b3;
+}
+
+/* --- Base styles for input fields --- */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  box-sizing: border-box;
+  /* Include padding in width */
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-  /* Contoh focus ring */
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* --- Container dan Layout Utama --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: var(--text-color);
+}
+
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  /* Mobile first: tumpuk */
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  /* Menggunakan variabel tema */
+  color: var(--text-color);
+  /* Menggunakan variabel tema */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  /* Jarak dari link di mobile */
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  /* Mobile first: tumpuk */
+  align-items: center;
+  width: 100%;
+}
+
+.nav-links a,
+.nav-links button {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 5px;
+  width: 100%;
+  /* Lebar penuh di mobile */
+  text-align: center;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  /* Sedikit gelap saat hover */
+}
+
+/* Perbaikan untuk link/button yang tidak memiliki margin diantara mereka */
+.nav-links>*:not(:last-child) {
+  margin-bottom: 8px;
+  /* Spasi vertikal antar link/button di mobile */
+}
+
+/* --- Category Dropdown (jika ingin dipertahankan) --- */
+/* Jika Anda tetap ingin dropdown kategori, tambahkan CSS ini */
+.category-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  /* Lebar penuh di mobile */
+  text-align: center;
+}
+
+.category-dropdown span {
+  cursor: pointer;
+  padding: 10px 15px;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.category-dropdown span:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-content {
+  display: none;
+  /* Sembunyikan secara default */
+  position: absolute;
+  background-color: var(--card-bg);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  /* Lebih tinggi dari elemen lain */
+  border-radius: 5px;
+  padding: 5px 0;
+  left: 50%;
+  /* Pusatkan dropdown */
+  transform: translateX(-50%);
+  /* Pusatkan dropdown */
+  top: calc(100% + 5px);
+  /* Posisi di bawah trigger */
+  width: auto;
+  /* Lebar sesuai konten */
+  white-space: nowrap;
+}
+
+.category-dropdown:hover .dropdown-content {
+  display: block;
+  /* Tampilkan saat di-hover */
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+  padding: 8px 15px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--background-color-light);
+  /* Hover background */
+}
+
+/* --- Product Grid (Home & Kategori) --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Default: 1 kolom di mobile */
+  gap: 20px;
+  padding: 0;
+}
+
+/* --- Product Card --- */
+.product-card {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.product-card p {
+  color: var(--muted-text-color);
+  margin-bottom: 15px;
+}
+
+.product-card .rating-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.product-card .rating-info span {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  color: var(--muted-text-color);
+}
+
+
+/* --- Forms (Login, Register, Add/Edit Product) --- */
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+.form-container h2,
+.form-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+/* --- Product Detail Page --- */
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.product-detail-container img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail-container h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.product-detail-container .price {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 25px 0;
+}
+
+.product-detail-container .description {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  text-align: center;
+  max-width: 700px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.product-detail-container .rating-section {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.product-detail-container .rating-section p {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.product-detail-container .rating-section .rating-value {
+  font-weight: bold;
+}
+
+.product-detail-container .rating-section .review-count {
+  font-size: 0.9rem;
+  color: var(--muted-text-color);
+}
+
+/* --- Cart Page --- */
+.cart-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  /* Mobile first */
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.cart-item-info {
+  flex-grow: 1;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.cart-item-info h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cart-item-info p {
+  color: var(--muted-text-color);
+  margin-bottom: 10px;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.cart-item-actions button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  /* Circle buttons */
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.cart-item-quantity {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.cart-item-total {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  width: 100%;
+}
+
+.cart-summary {
+  border-top: 2px solid var(--border-color);
+  margin-top: 30px;
+  padding-top: 25px;
+  text-align: right;
+  color: var(--text-color);
+}
+
+.cart-summary h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* --- Admin Product Table --- */
+.admin-table-container {
+  overflow-x: auto;
+  /* Untuk tabel agar bisa discroll di mobile */
+}
+
+.admin-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.admin-product-table thead tr {
+  background-color: var(--background-color-light);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .admin-product-table thead tr {
+  background-color: #3b455a;
+  /* Darker header for dark mode */
+}
+
+
+.admin-product-table th,
+.admin-product-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.admin-product-table td img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.admin-product-table tbody tr:hover {
+  background-color: var(--background-color-light);
+  /* Hover row */
+}
+
+[data-theme='dark'] .admin-product-table tbody tr:hover {
+  background-color: #3b455a;
+}
+
+
+/* --- Responsive Media Queries --- */
+
+/* Tablet (Small devices, 768px and up) */
+@media (min-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-logo {
+    margin-bottom: 0;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    width: auto;
+    padding: 8px 15px;
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+
+  .nav-links>*:not(:last-child) {
+    margin-bottom: 0;
+    /* Hapus spasi vertikal antar link */
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 kolom */
+  }
+
+  .search-bar-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .search-bar-container input {
+    margin-right: 15px;
+    width: auto;
+  }
+
+  .search-bar-container select {
+    width: auto;
+  }
+
+  .cart-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-item img {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .cart-item-info {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .cart-item-actions {
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+
+  .cart-item-total {
+    text-align: right;
+    width: auto;
+  }
+}
+
+/* Desktop (Medium devices, 992px and up) */
+@media (min-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 kolom */
+  }
+}
+
+/* Large Desktop (Large devices, 1200px and up) */
+@media (min-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 kolom */
+  }
 }
